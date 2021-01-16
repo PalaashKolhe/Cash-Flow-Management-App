@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Track Your Expenses!</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="uploadPicLabel">Upload Receipt Here:</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="submit">Submit</string>
+    <string name="previous">Previous</string>
+
+    <string name="datapagelabel">Your Summary:</string>
+    <string name="promptPic">Click here to take picture</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>
