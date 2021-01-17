@@ -76,6 +76,7 @@ public class FirstFragment extends Fragment {
                 captureImage();
 
                 TextView textView = (TextView) view.findViewById(R.id.textView3);
+
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -117,7 +118,8 @@ public class FirstFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Bundle extras = data.getExtras();
         Bitmap imageBitmap = (Bitmap) extras.get("data");
-        imgView.setImageBitmap(imageBitmap);
+//        imgView.setImageBitmap(imageBitmap);
+        imgView.setImageResource(R.drawable.receipt);
         //TextView myTextView = imgView.findViewById(R.id.textView2);
 
         try {
