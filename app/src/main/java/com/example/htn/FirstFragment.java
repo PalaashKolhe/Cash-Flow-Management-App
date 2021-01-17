@@ -25,9 +25,12 @@ import androidx.navigation.fragment.NavHostFragment;
 import android.content.pm.PackageManager;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 //import android.net.Uri;
 import java.lang.String;
+import java.util.List;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -90,8 +93,7 @@ public class FirstFragment extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 0) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
-                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 captureImage();
             } else {
                 Toast.makeText(getContext(),"This app wont work!", Toast.LENGTH_LONG).show();
@@ -106,43 +108,31 @@ public class FirstFragment extends Fragment {
         imgView.setImageBitmap(imageBitmap);
         //TextView myTextView = imgView.findViewById(R.id.textView2);
 
-        InputImage image = InputImage.fromBitmap(imageBitmap, 0);
-        TextRecognizer recognizer = TextRecognition.getClient();
-        Task<Text> result = recognizer.process(image);
-
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            InputImage image = InputImage.fromBitmap(imageBitmap, 0);
+            TextRecognizer recognizer = TextRecognition.getClient();
+            Task<Text> result = recognizer.process(image);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            Text resultText = result.getResult();
+            String finalText = resultText.getText();
+            List<List> strings_and_int = parseContent(finalText);
+            System.out.println(strings_and_int);
+
+
+        } catch (Exception e) {
+
         }
 
-        Text resultText = result.getResult();
-        String finalText = resultText.getText(); /////// USE THIS VARIABLE FOR FINAL TEXT.
-        System.out.println(finalText);
-
-
-
-//        for (Text.TextBlock block : result.getTextBlocks()) {
-//            String blockText = block.getText();
-//            Point[] blockCornerPoints = block.getCornerPoints();
-//            Rect blockFrame = block.getBoundingBox();
-//            for (Text.Line line : block.getLines()) {
-//                String lineText = line.getText();
-//                Point[] lineCornerPoints = line.getCornerPoints();
-//                Rect lineFrame = line.getBoundingBox();
-//                for (Text.Element element : line.getElements()) {
-//                    String elementText = element.getText();
-//                    Point[] elementCornerPoints = element.getCornerPoints();
-//                    Rect elementFrame = element.getBoundingBox();
-//                }
-//            }
-//        }
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         view.findViewById(R.id.submitBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,5 +141,25 @@ public class FirstFragment extends Fragment {
             }
         });
     }
+
+    public List<List> parseContent (String unparsed) {
+        String[] list_of_things = unparsed.split(" ");
+        ArrayList<Integer> to_return_ints = new ArrayList<Integer>();
+        ArrayList<String> to_return_strings = new ArrayList<String>();
+        int foo;
+        for (int i = 0; i < list_of_things.length; i++) {
+            try {
+                foo = Integer.parseInt(list_of_things[i]);
+                to_return_ints.add(foo);
+            } catch (NumberFormatException e) {
+                to_return_strings.add(list_of_things[i]);
+            }
+        }
+        // This is the object to return now
+        List<List> everything = new ArrayList<List>();
+        everything.add(to_return_strings);
+        everything.add(to_return_ints);
+        return everything;
+    };
 }
 
