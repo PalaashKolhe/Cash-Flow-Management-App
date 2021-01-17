@@ -18,12 +18,15 @@ import com.anychart.charts.Pie;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SecondFragment extends Fragment {
 
     //Chart stuff
+    //String value = getArguments().getString("key");
+
     AnyChartView anyChartView;
-    String[] labels = {"Grocery","Rocket League","Home"};
-    int[] proportions = {30,80,10};
+    String[] labels = {"Food - 8.46", "Grocery - 30.45", "Electronics - 53.35"};
+    double[] proportions = {8.46, 30.45, 53.55};
 
 
     @Override
@@ -42,7 +45,7 @@ public class SecondFragment extends Fragment {
     public void setupChart() {
         Pie pie = AnyChart.pie();
         List<DataEntry> dataEntryList = new ArrayList<>();
-
+        //System.out.println(value);
         for (int i = 0; i < proportions.length; i++) {
             dataEntryList.add(new ValueDataEntry(labels[i], proportions[i]));
         }

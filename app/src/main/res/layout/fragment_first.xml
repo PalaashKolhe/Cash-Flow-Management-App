@@ -57,4 +57,16 @@
         app:layout_constraintTop_toBottomOf="@+id/promptPic"
         app:srcCompat="@android:drawable/ic_menu_gallery" />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="314dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="52dp"
+        android:text= ""
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/submitBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

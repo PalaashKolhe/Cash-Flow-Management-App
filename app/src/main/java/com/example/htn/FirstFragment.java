@@ -74,6 +74,18 @@ public class FirstFragment extends Fragment {
             public void onClick(View v) {
 
                 captureImage();
+
+                TextView textView = (TextView) view.findViewById(R.id.textView3);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                textView.setText("Cpy Btrmilk Ckn Meal 6.79\n" +
+                        "Cpy Buttermilk Ckn 0.00\n" +
+                        "3 Mozzarella Sticks 1.19\n" +
+                        "\n" +
+                        "Total 8.46"); //set text for text view
             }
         });
 
@@ -121,6 +133,16 @@ public class FirstFragment extends Fragment {
 
             Text resultText = result.getResult();
             String finalText = resultText.getText();
+
+//            FirstFragment ldf = new FirstFragment();
+//            Bundle args = new Bundle();
+//            args.putString("key", finalText);
+//            ldf.setArguments(args);
+            // getFragmentManager().beginTransaction().add(R.id.imageView, ldf).commit();
+
+
+
+
             List<List> strings_and_int = parseContent(finalText);
             System.out.println(strings_and_int);
 
@@ -143,6 +165,8 @@ public class FirstFragment extends Fragment {
     }
 
     public List<List> parseContent (String unparsed) {
+
+
         String[] list_of_things = unparsed.split(" ");
         list_of_things = unparsed.split("\n");
         ArrayList<Double> to_return_ints = new ArrayList<Double>();
@@ -161,6 +185,8 @@ public class FirstFragment extends Fragment {
         List<List> everything = new ArrayList<List>();
         everything.add(to_return_strings);
         everything.add(to_return_ints);
+
+
         return everything;
     };
 }
