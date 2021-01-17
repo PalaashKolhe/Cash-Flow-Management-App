@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.htn">
     <!--Adding Camera-->
     <uses-feature android:name="android.hardware.camera2" android:required="true" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature android:name="android.hardware.camera2.autofocus" />
 
@@ -26,8 +28,10 @@
             </intent-filter>
         </activity>
         <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:resource="@array/preloaded_fonts"
+            android:value="ocr"
+            />
     </application>
 
 </manifest>

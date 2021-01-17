@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,31 @@ import android.content.pm.PackageManager;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+//import android.net.Uri;
+import java.lang.String;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.mlkit.common.MlKit;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.label.ImageLabeling;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
 
 public class FirstFragment extends Fragment {
     // Variables
@@ -78,6 +104,39 @@ public class FirstFragment extends Fragment {
         Bundle extras = data.getExtras();
         Bitmap imageBitmap = (Bitmap) extras.get("data");
         imgView.setImageBitmap(imageBitmap);
+        //TextView myTextView = imgView.findViewById(R.id.textView2);
+
+        InputImage image = InputImage.fromBitmap(imageBitmap, 0);
+        TextRecognizer recognizer = TextRecognition.getClient();
+        Task<Text> result = recognizer.process(image);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        Text resultText = result.getResult();
+        String finalText = resultText.getText(); /////// USE THIS VARIABLE FOR FINAL TEXT.
+        System.out.println(finalText);
+
+
+
+//        for (Text.TextBlock block : result.getTextBlocks()) {
+//            String blockText = block.getText();
+//            Point[] blockCornerPoints = block.getCornerPoints();
+//            Rect blockFrame = block.getBoundingBox();
+//            for (Text.Line line : block.getLines()) {
+//                String lineText = line.getText();
+//                Point[] lineCornerPoints = line.getCornerPoints();
+//                Rect lineFrame = line.getBoundingBox();
+//                for (Text.Element element : line.getElements()) {
+//                    String elementText = element.getText();
+//                    Point[] elementCornerPoints = element.getCornerPoints();
+//                    Rect elementFrame = element.getBoundingBox();
+//                }
+//            }
+//        }
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
