@@ -144,12 +144,14 @@ public class FirstFragment extends Fragment {
 
     public List<List> parseContent (String unparsed) {
         String[] list_of_things = unparsed.split(" ");
-        ArrayList<Integer> to_return_ints = new ArrayList<Integer>();
+        list_of_things = unparsed.split("\n");
+        ArrayList<Double> to_return_ints = new ArrayList<Double>();
         ArrayList<String> to_return_strings = new ArrayList<String>();
-        int foo;
+        double foo;
         for (int i = 0; i < list_of_things.length; i++) {
             try {
-                foo = Integer.parseInt(list_of_things[i]);
+                foo = Double.parseDouble(list_of_things[i]);
+                // foo = Integer.parseInt(list_of_things[i]);
                 to_return_ints.add(foo);
             } catch (NumberFormatException e) {
                 to_return_strings.add(list_of_things[i]);
