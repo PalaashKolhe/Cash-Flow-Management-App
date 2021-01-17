@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "494860695371",
+    "project_id": "cash-flow-management-787a2",
+    "storage_bucket": "cash-flow-management-787a2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494860695371:android:e65a6c51f73767354d5ace",
+        "android_client_info": {
+          "package_name": "com.example.htn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494860695371-7plbml3pt28h6gt19u0c77oo2qkk738l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.htn",
+            "certificate_hash": "1c41722ab3ec6af4df4152c1a1295c11cc387fa7"
+          }
+        },
+        {
+          "client_id": "494860695371-qpefmj1453a0nimgu8acsn2c242t0jtk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyp982yLYBrfWAIjbvGF1kGIYfY4XIlx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494860695371-qpefmj1453a0nimgu8acsn2c242t0jtk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
